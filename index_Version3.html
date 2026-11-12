@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Artigos & Etc — apoio acadêmico para TCC, dissertação, tese, estatística, banco de dados e formatação de trabalhos e artigos." />
+  <meta name="theme-color" content="#153b35" />
+  <title>Artigos & Etc | Apoio Acadêmico</title>
+  <style>
+    :root{
+      --verde:#153b35;
+      --verde-claro:#eaf3f1;
+      --dourado:#d7ad68;
+      --texto:#1e2a27;
+      --muted:#5e6865;
+      --branco:#fff;
+      --fundo:#f8f7f2;
+      --linha:#e5e8e5;
+      --sombra:0 20px 45px rgba(21,59,53,.12);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--fundo);
+      color:var(--texto);
+      line-height:1.65;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(1120px, calc(100% - 40px));margin:0 auto}
+    section{padding:85px 0}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2,h3{line-height:1.15}
+    .button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:12px 22px;
+      border-radius:10px;
+      font-weight:700;
+      transition:.2s ease;
+      cursor:pointer;
+      border:none;
+    }
+    .button:hover{transform:translateY(-2px)}
+    .button-primary{
+      background:var(--verde);
+      color:var(--branco);
+      box-shadow:var(--sombra);
+    }
+    .button-primary:hover{background:#1d4d46}
+    .button-secondary{
+      background:var(--branco);
+      color:var(--verde);
+      border:1px solid var(--verde);
+    }
+
+    .header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(248,247,242,.96);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--linha);
+    }
+    .nav{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .brand{
+      font-weight:800;
+      font-size:1.08rem;
+      color:var(--verde);
+      letter-spacing:.02em;
+    }
+    .brand span{color:var(--dourado)}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .nav-links a:hover{color:var(--verde)}
+
+    .hero{
+      padding:86px 0 70px;
+      background:
+        radial-gradient(circle at 80% 15%, rgba(215,173,104,.15), transparent 24%),
+        linear-gradient(135deg, #f4f6f1, #f8f7f2);
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:48px;
+      align-items:center;
+    }
+    .eyebrow{
+      display:inline-block;
+      background:var(--verde-claro);
+      color:var(--verde);
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:.8rem;
+      font-weight:700;
+      margin-bottom:18px;
+    }
+    h1{
+      font-size:clamp(2.7rem,5vw,4.6rem);
+      letter-spacing:-.05em;
+      line-height:1.05;
+      color:var(--verde);
+      margin-bottom:18px;
+    }
+    .hero-copy{
+      font-size:1.08rem;
+      color:var(--muted);
+      max-width:620px;
+      margin-bottom:26px;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:18px;
+    }
+    .hero-note{
+      color:var(--muted);
+      font-size:.92rem;
+    }
+    .hero-card{
+      background:var(--branco);
+      border:1px solid var(--linha);
+      padding:28px 24px;
+      border-radius:18px;
+      box-shadow:var(--sombra);
+    }
+    .hero-card h2{
+      font-size:1.25rem;
+      color:var(--verde);
+      margin-bottom:18px;
+    }
+    .hero-card ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    .hero-card li{
+      padding:12px 0;
+      border-top:1px solid var(--linha);
+      color:var(--texto);
+      font-weight:600;
+    }
+    .hero-card li:first-child{border-top:none}
+    .check{
+      color:var(--verde);
+      font-weight:800;
+      margin-right:10px;
+    }
+
+    .section-heading{
+      max-width:760px;
+      margin:0 auto 38px;
+      text-align:center;
+    }
+    .section-heading h2{
+      font-size:clamp(2.1rem,4vw,3.1rem);
+      color:var(--verde);
+      margin-bottom:10px;
+    }
+    .section-heading p{
+      color:var(--muted);
+      margin-bottom:0;
+    }
+
+    .services{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:18px;
+    }
+    .service{
+      background:var(--branco);
+      border:1px solid var(--linha);
+      border-radius:16px;
+      padding:26px 22px;
+      box-shadow:0 10px 25px rgba(21,59,53,.03);
+    }
+    .service-top{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      margin-bottom:14px;
+    }
+    .service-number{
+      width:40px;
+      height:40px;
+      display:grid;
+      place-items:center;
+      border-radius:10px;
+      background:var(--verde-claro);
+      color:var(--verde);
+      font-weight:800;
+    }
+    .service h3{
+      margin-bottom:8px;
+      color:var(--verde);
+      font-size:1.18rem;
+    }
+    .service p{
+      margin-bottom:0;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .about{
+      background:var(--verde);
+      color:var(--branco);
+    }
+    .about-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:38px;
+      align-items:center;
+    }
+    .about h2{
+      font-size:clamp(2.1rem,4vw,3rem);
+      margin-bottom:16px;
+      color:var(--branco);
+    }
+    .about p{
+      color:rgba(255,255,255,.82);
+      margin-bottom:0;
+    }
+    .about-box{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:18px;
+      padding:28px 24px;
+    }
+    .about-box h3{
+      color:#f1d8a7;
+      margin-bottom:10px;
+      font-size:1.5rem;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+    .step{
+      background:var(--branco);
+      border:1px solid var(--linha);
+      border-radius:16px;
+      padding:24px 20px;
+    }
+    .step-number{
+      color:var(--dourado);
+      font-size:.82rem;
+      font-weight:800;
+      letter-spacing:.08em;
+    }
+    .step h3{
+      margin:10px 0 8px;
+      color:var(--verde);
+      font-size:1.16rem;
+    }
+    .step p{
+      margin:0;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .contact{
+      background:var(--verde-claro);
+    }
+    .contact-box{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      background:var(--branco);
+      border:1px solid var(--linha);
+      border-radius:18px;
+      padding:34px 28px;
+      box-shadow:var(--sombra);
+    }
+    .contact-box h2{
+      margin-bottom:8px;
+      color:var(--verde);
+      font-size:clamp(1.8rem,4vw,2.6rem);
+    }
+    .contact-box p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .footer{
+      padding:26px 0;
+      text-align:center;
+      color:var(--muted);
+      font-size:.92rem;
+      background:#f2f3ef;
+    }
+
+    .whatsapp-float{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      background:#25D366;
+      color:var(--branco);
+      display:grid;
+      place-items:center;
+      font-size:1.7rem;
+      font-weight:700;
+      box-shadow:0 10px 25px rgba(37,211,102,.35);
+      z-index:30;
+    }
+
+    @media (max-width: 860px){
+      .hero-grid,
+      .about-grid,
+      .services,
+      .steps{
+        grid-template-columns:1fr;
+      }
+      .nav-links{display:none}
+      .contact-box{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    @media (max-width: 560px){
+      .container{width:min(100% - 28px, 1120px)}
+      .hero{padding-top:64px}
+      .hero-actions{flex-direction:column}
+      .hero-actions .button{width:100%}
+      .button{width:100%}
+      section{padding:70px 0}
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a href="#inicio" class="brand">Artigos <span>&amp; Etc</span></a>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#processo">Como funciona</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a class="button button-primary whatsapp-link" href="#" target="_blank" rel="noopener noreferrer">
+        Entrar em contato
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Apoio acadêmico personalizado</span>
+          <h1>Mais clareza para o seu trabalho acadêmico.</h1>
+          <p class="hero-copy">
+            Artigos &amp; Etc oferece apoio em TCC, dissertação, tese, estatística, banco de dados,
+            formatação e artigos acadêmicos, com atenção às normas e à organização da sua pesquisa.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary whatsapp-link" href="#" target="_blank" rel="noopener noreferrer">
+              Conversar no WhatsApp
+            </a>
+            <a class="button button-secondary" href="#servicos">Ver serviços</a>
+          </div>
+          <div class="hero-note">Atendimento individual, prático e pensado para a sua necessidade acadêmica.</div>
+        </div>
+
+        <aside class="hero-card">
+          <h2>Áreas de apoio</h2>
+          <ul>
+            <li><span class="check">✓</span> TCC, dissertação e tese</li>
+            <li><span class="check">✓</span> Estatística e análise de dados</li>
+            <li><span class="check">✓</span> Banco de dados</li>
+            <li><span class="check">✓</span> Formatação de artigos e trabalhos</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="servicos">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Serviços</h2>
+          <p>Orientação e suporte técnico para organizar, desenvolver e apresentar sua pesquisa com mais segurança.</p>
+        </div>
+
+        <div class="services">
+          <article class="service">
+            <div class="service-top">
+              <div class="service-number">01</div>
+            </div>
+            <h3>TCC</h3>
+            <p>Estruturação do trabalho, metodologia, revisão e organização dos capítulos para finalização acadêmica.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-top">
+              <div class="service-number">02</div>
+            </div>
+            <h3>Dissertação e tese</h3>
+            <p>Apoio em desenvolvimento, revisão de ideias, organização metodológica e composição final do documento.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-top">
+              <div class="service-number">03</div>
+            </div>
+            <h3>Estatística</h3>
+            <p>Suporte na análise de dados, interpretação de resultados e aplicação de métodos estatísticos corretos.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-top">
+              <div class="service-number">04</div>
+            </div>
+            <h3>Banco de dados</h3>
+            <p>Organização, estruturação e análise de dados para auxiliar a pesquisa e a tomada de decisões.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-top">
+              <div class="service-number">05</div>
+            </div>
+            <h3>Formatação acadêmica</h3>
+            <p>Ajustes de estrutura, normas, referências, margens, citações e apresentação final do material.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-top">
+              <div class="service-number">06</div>
+            </div>
+            <h3>Artigos</h3>
+            <p>Organização e revisão de textos acadêmicos, com atenção à linguagem, formatação e publicação.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="sobre">
+      <div class="container about-grid">
+        <div>
+          <span class="eyebrow" style="background:rgba(255,255,255,.1);color:#fff;">Apoio responsável</span>
+          <h2>Orientação para o desenvolvimento da sua pesquisa.</h2>
+          <p>
+            O objetivo do atendimento é apoiar o estudante e o pesquisador na organização, análise e apresentação
+            dos seus materiais acadêmicos, com atenção à clareza, consistência e rigor científico.
+          </p>
+        </div>
+
+        <div class="about-box">
+          <h3>Como atuamos</h3>
+          <p>
+            A partir do seu tema e das suas necessidades, avaliamos a melhor forma de suporte: organização,
+            análise de dados, formatação, revisão e acompanhamento das etapas do trabalho.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="processo">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Como funciona</h2>
+          <p>Um processo simples para entender sua necessidade e combinar o melhor apoio acadêmico.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">ETAPA 1</div>
+            <h3>Contato</h3>
+            <p>Você descreve o que precisa e em qual etapa do trabalho está.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">ETAPA 2</div>
+            <h3>Diagnóstico</h3>
+            <p>Entendemos o escopo, os materiais e as exigências da sua instituição.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">ETAPA 3</div>
+            <h3>Atendimento</h3>
+            <p>Realizamos o suporte necessário com organização, clareza e atenção às normas.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contato">
+      <div class="container contact-box">
+        <div>
+          <h2>Vamos conversar?</h2>
+          <p>Entre em contato pelo WhatsApp para saber mais sobre os serviços.</p>
+        </div>
+        <a class="button button-primary whatsapp-link" href="#" target="_blank" rel="noopener noreferrer">
+          Falar por WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© <span id="year"></span> Artigos &amp; Etc. Atendimento responsável e personalizado.</div>
+  </footer>
+
+  <a
+    class="whatsapp-float whatsapp-link"
+    href="#"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Entrar em contato pelo WhatsApp"
+    title="Fale pelo WhatsApp"
+  >
+    ↗
+  </a>
+
+  <script>
+    const phone = "5591985250194";
+    const message = "Olá! Gostaria de mais informações sobre apoio acadêmico.";
+    const whatsappUrl = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+    document.querySelectorAll(".whatsapp-link").forEach(function(el){
+      el.href = whatsappUrl;
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
